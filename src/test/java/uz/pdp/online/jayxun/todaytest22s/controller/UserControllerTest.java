@@ -51,6 +51,20 @@ class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userDto)))
                 .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void addUserValidException() throws Exception {
+
+        UserDto userDto = new UserDto("muxammadovdjaydmxungmanil.com", "ds");
+
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/user/add")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(userDto)))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
 
     }
+
 }
